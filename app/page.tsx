@@ -2,10 +2,10 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllTeamIds, getTeamData } from 'app/espn';
-import { unstable_cacheLife as cacheLife } from 'next/cache';
 import TeamSelect from './[teamId]/select';
 import ConferencePage from './conference/page';
 import ScoresPage from './scores/page';
+
 
 function Row({
   awayScore,
@@ -74,11 +74,11 @@ function Row({
 }
 
 async function Schedule() {
-  'use cache';
-  cacheLife('hours');
+  // 'use cache';
+  //cacheLife('hours');
 
   const [team, allTeams] = await Promise.all([
-    getTeamData('66'),
+    getTeamData('3456'),
     getAllTeamIds()
   ]);
   const { name, record, color, standing, games, logo } = team;
@@ -105,7 +105,7 @@ async function Schedule() {
         <h1 className="font-semibold text-2xl ml-2">{name}</h1>
       </div>
       <h3 className="text-gray-700 dark:text-gray-300 mb-2">{`${record} • ${standing}`}</h3>
-      <TeamSelect allTeams={allTeams} teamId={'66'} />
+      <TeamSelect allTeams={allTeams} teamId={'3456'} />
       <h2 className="font-semibold text-xl">Schedule</h2>
       <h3 className="font-semibold text-gray-700 dark:text-gray-300">Next</h3>
       {nextGame && <Row isLast {...nextGame} />}

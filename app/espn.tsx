@@ -111,7 +111,7 @@ export async function getTeamData(teamId: string): Promise<TeamData> {
   }
 
   const res = await fetch(
-    `https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/${teamId}/schedule`
+    `https://site.api.espn.com/apis/site/v2/sports/soccer/bra.2/teams/${teamId}/schedule?lang=pt&region=br`
   );
 
   if (!res.ok) {
@@ -163,9 +163,9 @@ export async function getTeamData(teamId: string): Promise<TeamData> {
 }
 
 export async function getAllTeamIds(): Promise<TeamBasicInfo[]> {
-  const pagePromises = Array.from({ length: 8 }, (_, i) =>
+  const promises = Array.from({ length: 1 }, (_, i) =>
     fetch(
-      `https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams?page=${i + 1}`
+      `https://site.api.espn.com/apis/site/v2/sports/soccer/bra.2/teams?lang=pt&region=br&page=${i + 1}`
     ).then((res) => {
       if (!res.ok) {
         throw new Error(`Failed to fetch team IDs: ${res.statusText}`);
@@ -174,7 +174,7 @@ export async function getAllTeamIds(): Promise<TeamBasicInfo[]> {
     })
   );
 
-  const dataArray = await Promise.all(pagePromises);
+  const dataArray = await Promise.all(promises);
   const teams: TeamBasicInfo[] = dataArray.flatMap((data) =>
     data.sports[0].leagues[0].teams.map((team: any) => team.team)
   );
@@ -184,7 +184,7 @@ export async function getAllTeamIds(): Promise<TeamBasicInfo[]> {
 
 export async function getTodaySchedule() {
   const res = await fetch(
-    'https://site.web.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard'
+    'https://site.api.espn.com/apis/site/v2/sports/soccer/bra.2/scoreboard'
   );
 
   if (!res.ok) {
@@ -221,7 +221,7 @@ function formatTeamData(teamData: CompetitorData) {
   return {
     name: teamData.team.displayName,
     teamId: teamData.team.id,
-    rank: teamData.curatedRank.current,
+    // rank: teamData.curatedRank.current,
     logo: teamData.team.logo ?? DEFAULT_LOGO,
     color: getTeamColor(teamData.team.displayName),
     score: teamData.score,
@@ -236,16 +236,16 @@ export async function getConferenceRankings(): Promise<
   ConferenceRankingEntry[]
 > {
   const res = await fetch(
-    'https://site.web.api.espn.com/apis/v2/sports/basketball/mens-college-basketball/standings?region=us&lang=en&contentorigin=espn&group=8&season=2025'
+    'https://site.web.api.espn.com/apis/v2/sports/soccer/bra.2/standings?region=br&lang=pt&contentorigin=deportes&season=2025'
   );
 
   if (!res.ok) {
     throw new Error(`Failed to fetch conference rankings: ${res.statusText}`);
   }
 
-  const data = await res.json();
+  const {children} = await res.json();
 
-  let teamsData = data.standings.entries.map((entry: any) => {
+  let teamsData = children[0].standings.entries.map((entry: any) => {
     const { team, stats } = entry;
 
     return {

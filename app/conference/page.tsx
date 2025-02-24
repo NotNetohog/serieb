@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getConferenceRankings } from 'app/espn';
-import { unstable_cacheLife as cacheLife } from 'next/cache';
 
 function RankingRow({
   color,
@@ -44,14 +43,14 @@ function RankingRow({
 }
 
 export default async function ConferencePage() {
-  'use cache';
-  cacheLife('minutes');
+  // 'use cache';
+  // cacheLife('minutes');
 
   const confRankings = await getConferenceRankings();
 
   return (
     <section className="w-full mx-auto p-6">
-      <h2 className="font-semibold text-2xl">Conference</h2>
+      <h2 className="font-semibold text-2xl">Classificação</h2>
       <h3 className="text-sm text-gray-700 dark:text-gray-300 mb-2 flex justify-end">
         GB
       </h3>

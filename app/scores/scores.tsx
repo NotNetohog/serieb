@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getTodaySchedule } from 'app/espn';
-import { unstable_cacheLife as cacheLife } from 'next/cache';
 
 function Team({
   color,
@@ -71,8 +70,8 @@ function Team({
 }
 
 export async function Scores() {
-  'use cache';
-  cacheLife('minutes');
+  // 'use cache';
+  // cacheLife('minutes');
 
   const { games } = await getTodaySchedule();
 
