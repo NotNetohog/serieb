@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { fetchRounds, Event, getTeamImageUrl } from 'app/sofascore';
 import { MatchStatus } from './data';
@@ -21,10 +20,9 @@ function TeamDisplay({ id, shortName, name, teamColors, score, isWinner }: TeamD
     <div className="flex items-center justify-between w-full">
       <Link href={`/team/${id}`} className="flex items-center group">
         <div className="relative w-8 h-8 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800 mr-3 flex-shrink-0">
-          <Image
+          <img
             src={getTeamImageUrl(id)}
             alt={name}
-            fill
             sizes="32px"
             className="object-contain p-1"
           />

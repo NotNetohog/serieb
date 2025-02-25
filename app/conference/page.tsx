@@ -1,7 +1,6 @@
 // components/StandingsTable.tsx
 import clsx from 'clsx';
 import Link from 'next/link';
-import Image from 'next/image';
 import { fetchStandings, getSimplifiedStandings } from 'app/sofascore';
 import { cacheLife } from 'next/dist/server/use-cache/cache-life';
 
@@ -57,12 +56,10 @@ function TeamRow({
           {position}
         </span>
         <div className="relative w-6 h-6 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800 flex-shrink-0">
-          <Image
+          <img
             src={teamImageUrl}
             alt={teamName}
-            fill
             sizes="24px"
-            priority={index < 10}
             className={clsx('object-contain p-0.5', {
               'dark:invert': teamColors.primary === '000000'
             })}
@@ -127,10 +124,9 @@ async function StandingsTable({
         <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="relative w-8 h-8 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
-              <Image
+              <img
                 src={`https://img.sofascore.com/api/v1/unique-tournament/${tournamentId}/image`}
                 alt={data.standings[0].tournament.name}
-                fill
                 sizes="32px"
                 className="object-contain p-1"
               />

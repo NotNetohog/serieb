@@ -94,9 +94,7 @@ export interface Team {
   fieldTranslations?: FieldTranslations;
 }
 
-export interface TeamWithImage extends Team {
-  imageUrl: string;
-}
+
 
 // Standings related types
 export interface TieBreakingRule {
@@ -125,9 +123,6 @@ export interface StandingRow {
   scoreDiffFormatted: string;
 }
 
-export interface StandingRowWithTeamImage extends Omit<StandingRow, 'team'> {
-  team: TeamWithImage;
-}
 
 export interface Standing {
   tournament: Tournament;
@@ -140,17 +135,13 @@ export interface Standing {
   updatedAtTimestamp: number;
 }
 
-export interface StandingWithTeamImages extends Omit<Standing, 'rows'> {
-  rows: StandingRowWithTeamImage[];
-}
+
 
 export interface StandingsResponse {
   standings: Standing[];
 }
 
-export interface StandingsResponseWithTeamImages {
-  standings: StandingWithTeamImages[];
-}
+
 
 // Event related types
 export interface RoundInfo {
@@ -229,8 +220,7 @@ export function getTeamImageUrl(teamId: number): string {
 export async function fetchStandings(
   tournamentId: number, 
   seasonId: number, 
-  includeTeamImages = true
-): Promise<StandingsResponse | StandingsResponseWithTeamImages> {
+): Promise<StandingsResponse> {
   try {
 
     if(process.env.NODE_ENV === "development"){
@@ -251,21 +241,7 @@ export async function fetchStandings(
 
     const data: StandingsResponse = await response.json();
     
-    if (includeTeamImages) {
-      // Add image URLs to each team
-      return {
-        standings: data.standings.map(standing => ({
-          ...standing,
-          rows: standing.rows.map(row => ({
-            ...row,
-            team: {
-              ...row.team,
-              imageUrl: getTeamImageUrl(row.team.id)
-            }
-          }))
-        }))
-      } as StandingsResponseWithTeamImages;
-    }
+
     
     return data;
 
@@ -287,7 +263,7 @@ export async function fetchStandings(
  * @param standingRow - The standing row for a team
  * @returns The promotion/relegation status text or undefined
  */
-export function getTeamStatus(standingRow: StandingRow | StandingRowWithTeamImage): string | undefined {
+export function getTeamStatus(standingRow: StandingRow ): string | undefined {
   return standingRow.promotion?.text;
 }
 
@@ -298,7 +274,7 @@ export function getTeamStatus(standingRow: StandingRow | StandingRowWithTeamImag
  * @returns An array of simplified team standings
  */
 export function getSimplifiedStandings(
-  data: StandingsResponse | StandingsResponseWithTeamImages
+  data: StandingsResponse
 ): Array<{
   position: number;
   teamName: string;
@@ -328,9 +304,7 @@ export function getSimplifiedStandings(
       teamName: row.team.name,
       shortName: row.team.shortName,
       teamId: row.team.id,
-      teamImageUrl: teamHasImage 
-        ? (row.team as TeamWithImage).imageUrl 
-        : getTeamImageUrl(row.team.id),
+      teamImageUrl: getTeamImageUrl(row.team.id),
       points: row.points,
       matches: row.matches,
       wins: row.wins,
