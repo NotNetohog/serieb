@@ -27,7 +27,7 @@ function TeamDisplay({ id, shortName, name, teamColors, score, isWinner }: TeamD
           />
         </div>
         <span
-          className={`font-medium transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400 ${isWinner ? 'font-semibold' : ''
+          className={`font-medium transition-colors ${isWinner ? 'font-semibold' : ''
             }`}
           style={{
             color: isWinner ? `#${teamColors.primary}` : undefined
