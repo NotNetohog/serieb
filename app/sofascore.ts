@@ -1,4 +1,6 @@
 // sofascore.ts
+import round1 from 'app/static-data/rounds/1.json';
+import standing1 from 'app/static-data/standings/1.json';
 
 // Base types
 export interface Country {
@@ -230,6 +232,8 @@ export async function fetchStandings(
   includeTeamImages = true
 ): Promise<StandingsResponse | StandingsResponseWithTeamImages> {
   try {
+
+    if(process.env.NODE_ENV === "development"){
     const response = await fetch(
       `https://www.sofascore.com/api/v1/unique-tournament/${tournamentId}/season/${seasonId}/standings/total`,
       {
@@ -264,6 +268,13 @@ export async function fetchStandings(
     }
     
     return data;
+
+  }
+
+  const data =  standing1 as StandingsResponse
+
+  return data
+
   } catch (error) {
     console.error('Error fetching standings:', error);
     throw error;
@@ -376,6 +387,8 @@ export async function fetchRounds(
   round: number
 ): Promise<EventsResponse> {
   try {
+
+    if(process.env.NODE_ENV === "development"){
     const response = await fetch(
       `https://www.sofascore.com/api/v1/unique-tournament/${tournamentId}/season/${seasonId}/events/round/${round}`,
       {
@@ -383,7 +396,6 @@ export async function fetchRounds(
           'Accept': 'application/json',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         },
-        cache: 'no-store' // Ensures fresh data on each request
       }
     );
 
@@ -393,6 +405,13 @@ export async function fetchRounds(
 
     const data: EventsResponse = await response.json();
     return data;
+  }
+
+  const data = round1 as EventsResponse
+
+  return data
+
+
   } catch (error) {
     console.error('Error fetching rounds:', error);
     throw error;

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchStandings, getSimplifiedStandings } from 'app/sofascore';
+import { cacheLife } from 'next/dist/server/use-cache/cache-life';
 
 interface TeamRowProps {
   position: number;
@@ -106,6 +107,9 @@ async function StandingsTable({
   seasonId?: number;
   showHeader?: boolean;
 }) {
+  'use cache';
+  cacheLife('max');
+
   const data = await fetchStandings(tournamentId, seasonId);
   const simplifiedStandings = getSimplifiedStandings(data);
 

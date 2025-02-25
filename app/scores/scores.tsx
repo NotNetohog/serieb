@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { fetchRounds, Event, getTeamImageUrl } from 'app/sofascore';
 import { MatchStatus } from './data';
+import { cacheLife } from 'next/dist/server/use-cache/cache-life';
 
 interface TeamDisplayProps {
   id: number;
@@ -95,8 +96,8 @@ export function EventCard({ event }: { event: Event }) {
 }
 
 export async function Scores() {
-  // 'use cache';
-  // cacheLife('hours');
+  'use cache';
+  cacheLife('max');
 
   const { events } = await fetchRounds(390, 72603, 1)
 
@@ -124,3 +125,5 @@ export async function Scores() {
 
   );
 }
+
+
