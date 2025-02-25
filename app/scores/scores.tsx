@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { fetchRounds, Event, getTeamImageUrl } from 'app/sofascore';
 import { MatchStatus } from './data';
 import { cacheLife } from 'next/dist/server/use-cache/cache-life';
@@ -18,7 +17,7 @@ interface TeamDisplayProps {
 function TeamDisplay({ id, shortName, name, teamColors, score, isWinner }: TeamDisplayProps) {
   return (
     <div className="flex items-center justify-between w-full">
-      <Link href={`/team/${id}`} className="flex items-center group">
+      <div className="flex items-center group">
         <div className="relative w-8 h-8 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800 mr-3 flex-shrink-0">
           <img
             src={getTeamImageUrl(id)}
@@ -36,7 +35,7 @@ function TeamDisplay({ id, shortName, name, teamColors, score, isWinner }: TeamD
         >
           {shortName}
         </span>
-      </Link>
+      </div>
       {score !== undefined && (
         <span className={`text-lg font-semibold ${isWinner ? 'text-black dark:text-white' : 'text-gray-600 dark:text-gray-400'}`}>
           {score}

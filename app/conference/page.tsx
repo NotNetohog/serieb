@@ -1,6 +1,5 @@
 // components/StandingsTable.tsx
 import clsx from 'clsx';
-import Link from 'next/link';
 import { fetchStandings, getSimplifiedStandings } from 'app/sofascore';
 import { cacheLife } from 'next/dist/server/use-cache/cache-life';
 
@@ -65,13 +64,11 @@ function TeamRow({
             })}
           />
         </div>
-        <Link
-          href={`/team/${teamId}`}
-          className="font-medium ml-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          title={teamName}
+        <div
+          className="font-medium ml-3  transition-colors"
         >
           {shortName}
-        </Link>
+        </div>
 
 
       </div>
