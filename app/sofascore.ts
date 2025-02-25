@@ -230,12 +230,29 @@ export async function fetchStandings(
   includeTeamImages = true
 ): Promise<StandingsResponse | StandingsResponseWithTeamImages> {
   try {
+    // Enhanced headers
+    const headers = {
+      'Accept': 'application/json, text/plain, */*',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Referer': 'https://www.sofascore.com/',
+      'Origin': 'https://www.sofascore.com'
+    };
+
+    // Visit main site to get cookies
+    const cookieResponse = await fetch('https://www.sofascore.com/', { headers });
+    
+    // Extract and store cookies
+    const cookieHeader = cookieResponse.headers.getSetCookie();
+    const cookieString = cookieHeader.join('; ');
+    
+    // Make API request with cookies
     const response = await fetch(
       `https://www.sofascore.com/api/v1/unique-tournament/${tournamentId}/season/${seasonId}/standings/total`,
       {
         headers: {
-          'Accept': 'application/json',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+          ...headers,
+          'Cookie': cookieString
         },
       }
     );
@@ -246,8 +263,8 @@ export async function fetchStandings(
 
     const data: StandingsResponse = await response.json();
     
+    // Rest of your code remains the same
     if (includeTeamImages) {
-      // Add image URLs to each team
       return {
         standings: data.standings.map(standing => ({
           ...standing,
