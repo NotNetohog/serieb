@@ -74,13 +74,13 @@ function TeamRow({
 
       <div className="flex items-center space-x-4">
         <div className="flex space-x-4 text-sm text-gray-600 dark:text-gray-400">
-          <span className="w-8 text-center">{wins}</span>
-          <span className="w-8 text-center">{draws}</span>
-          <span className="w-8 text-center">{losses}</span>
+          <span className="w-4 sm:w-8 text-center">{wins}</span>
+          <span className="w-4 sm:w-8 text-center">{draws}</span>
+          <span className="w-4 sm:w-8 text-center">{losses}</span>
         </div>
 
 
-        <span className="w-8 text-center font-semibold tabular-nums">
+        <span className="w-4 sm:w-8  text-sm text-center font-semibold tabular-nums">
           {points}
         </span>
       </div>
@@ -133,10 +133,10 @@ async function StandingsTable({
           </div>
 
           <div className="flex space-x-4 text-xs text-gray-500 dark:text-gray-400">
-            <span className="w-8 text-center">V</span>
-            <span className="w-8 text-center">E</span>
-            <span className="w-8 text-center">D</span>
-            <span className="w-8 text-center font-medium">PTS</span>
+            <span className="w-4 sm:w-8 text-center">V</span>
+            <span className="w-4 sm:w-8 text-center">E</span>
+            <span className="w-4 sm:w-8 text-center">D</span>
+            <span className="w-4 sm:w-8 text-center font-medium">PTS</span>
           </div>
 
 
@@ -159,7 +159,7 @@ async function StandingsTable({
 
 export default function StandingsPage() {
   return (
-    <section className="w-full mx-auto p-4">
+    <section className="w-full mx-auto py-8 sm:px-4">
       <StandingsTable />
     </section>
   );
