@@ -4,10 +4,8 @@ import { BottomNav } from './navbar';
 
 export const metadata = {
   title: {
-    default: 'NCCAM Scores & Schedules',
-    template: '%s | NCCAM Scores & Schedules',
+    default: 'simples série B',
   },
-  description: 'Like ESPN, but streamlined.',
 };
 
 export const viewport = {

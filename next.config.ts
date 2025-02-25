@@ -15,6 +15,12 @@ export default {
         port: '',
         pathname: '/i/teamlogos/**',
         search: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.sofascore.com',
+        port: '',
+        search: ''
       }
     ]
   }

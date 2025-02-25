@@ -1,99 +1,127 @@
-import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getTodaySchedule } from 'app/espn';
+import { fetchRounds, Event, getTeamImageUrl } from 'app/sofascore';
+import { MatchStatus } from './data';
+import { cacheLife } from 'next/dist/server/use-cache/cache-life';
 
-function Team({
-  color,
-  score,
-  index,
-  logo,
-  name,
-  rank,
-  record,
-  teamId,
-  winner,
-  status
-}: any) {
-  const faded = winner === false && status.includes('Final');
+interface TeamDisplayProps {
+  id: number;
+  shortName: string;
+  name: string;
+  teamColors: {
+    primary: string;
+    text: string;
+  };
+  score?: number;
+  isWinner?: boolean;
+}
+
+function TeamDisplay({ id, shortName, name, teamColors, score, isWinner }: TeamDisplayProps) {
+  return (
+    <div className="flex items-center justify-between w-full">
+      <Link href={`/team/${id}`} className="flex items-center group">
+        <div className="relative w-8 h-8 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800 mr-3 flex-shrink-0">
+          <Image
+            src={getTeamImageUrl(id)}
+            alt={name}
+            fill
+            sizes="32px"
+            className="object-contain p-1"
+          />
+        </div>
+        <span
+          className={`font-medium transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400 ${isWinner ? 'font-semibold' : ''
+            }`}
+          style={{
+            color: isWinner ? `#${teamColors.primary}` : undefined
+          }}
+        >
+          {shortName}
+        </span>
+      </Link>
+      {score !== undefined && (
+        <span className={`text-lg font-semibold ${isWinner ? 'text-black dark:text-white' : 'text-gray-600 dark:text-gray-400'}`}>
+          {score}
+        </span>
+      )}
+    </div>
+  );
+}
+
+
+
+function determineWinner(event: Event) {
+  if (event.status.type !== 'finished') return { homeWinner: false, awayWinner: false };
+
+  const homeScore = event.homeScore.current;
+  const awayScore = event.awayScore.current;
+
+  if (homeScore === undefined || awayScore === undefined) return { homeWinner: false, awayWinner: false };
+
+  return {
+    homeWinner: homeScore > awayScore,
+    awayWinner: homeScore < awayScore
+  };
+}
+
+export function EventCard({ event }: { event: Event }) {
+  const { homeWinner, awayWinner } = determineWinner(event);
+  const isLive = event.status.type === 'inprogress';
 
   return (
-    <Link href={`/${teamId}`}>
-      <div className="flex flex-row justify-between px-0 py-2 h-[60px]">
-        <div className="flex">
-          <Image
-            src={logo}
-            alt={name}
-            priority={index < 10}
-            width={24}
-            height={24}
-            className={clsx('h-6 w-6 mt-[2px]', {
-              'dark:invert': color === '000000'
-            })}
-          />
-          <div className="flex flex-col ml-4 leading-4 gap-y-1">
-            <p
-              className={clsx('font-semibold', {
-                'text-gray-500 line-through decoration-gray-500 decoration-1':
-                  faded,
-                'text-black dark:text-white': !faded
-              })}
-            >
-              {rank !== 99 ? (
-                <span className="text-sm uppercase font-normal text-gray-500 mr-2">
-                  {rank}
-                </span>
-              ) : null}
-              {name}
-            </p>
-            <p
-              className={clsx('text-sm', {
-                'text-gray-500': faded,
-                'text-gray-600 dark:text-gray-400': !faded
-              })}
-            >
-              {record}
-            </p>
-          </div>
-        </div>
-        <div
-          className={clsx('flex', {
-            'text-gray-500': faded,
-            'text-gray-900 dark:text-gray-100': !faded
-          })}
-        >
-          <p className="leading-normal font-semibold text-xl">{score}</p>
-        </div>
+    <div className="p-4 mb-3 rounded-lg bg-white dark:bg-gray-900 shadow-sm border border-gray-100 dark:border-gray-800 hover:border-gray-200 dark:hover:border-gray-700 transition-all">
+      <div className="flex justify-between items-center mb-3">
+        <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+          {event.tournament.name}
+        </span>
+        <span className={`text-xs font-medium ${isLive ? 'text-green-600 dark:text-green-400 animate-pulse' : 'text-gray-500 dark:text-gray-400'}`}>
+          <MatchStatus event={event} />
+        </span>
       </div>
-    </Link>
+
+      <div className="space-y-3">
+        <TeamDisplay
+          {...event.homeTeam}
+          score={event.homeScore.current}
+          isWinner={homeWinner}
+        />
+        <TeamDisplay
+          {...event.awayTeam}
+          score={event.awayScore.current}
+          isWinner={awayWinner}
+        />
+      </div>
+    </div>
   );
 }
 
 export async function Scores() {
-  // 'use cache';
-  // cacheLife('minutes');
+  'use cache';
+  cacheLife('hours');
 
-  const { games } = await getTodaySchedule();
+  const { events } = await fetchRounds(390, 72603, 1)
+
+  if (!events || events.length === 0) {
+    return (
+      <div className="p-6 text-center text-gray-500 dark:text-gray-400">
+        No matches found for this round.
+      </div>
+    );
+  }
 
   return (
-    <div>
-      {games.map((game: any, index: number) => {
-        return (
-          <div
-            key={index}
-            className={clsx('pb-2', {
-              'border-b border-gray-200 dark:border-gray-800':
-                index !== games.length - 1
-            })}
-          >
-            <p className="flex justify-end mt-4 text-sm text-gray-600 dark:text-gray-400">
-              {game.status.includes('EST') ? game.date : game.status}
-            </p>
-            <Team index={index} status={game.status} {...game.homeTeam} />
-            <Team index={index} status={game.status} {...game.awayTeam} />
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div className='py-4'>
+        <h2 className="font-semibold text-lg">Próxima Rodada</h2>
+        <h3 className="text-xs text-gray-600 dark:text-gray-400">
+          {events[0].tournament.name}
+        </h3>
+      </div><div className="space-y-2">
+        {events.map((event) => (
+          <EventCard key={event.id} event={event} />
+        ))}
+      </div>
+    </>
+
   );
 }

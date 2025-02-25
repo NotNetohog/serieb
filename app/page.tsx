@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllTeamIds, getTeamData } from 'app/espn';
-import TeamSelect from './[teamId]/select';
 import ConferencePage from './conference/page';
 import ScoresPage from './scores/page';
 
@@ -73,67 +71,12 @@ function Row({
   );
 }
 
-async function Schedule() {
-  // 'use cache';
-  //cacheLife('hours');
 
-  const [team, allTeams] = await Promise.all([
-    getTeamData('3456'),
-    getAllTeamIds()
-  ]);
-  const { name, record, color, standing, games, logo } = team;
-  const nextGame = games.find((game) => game.homeScore === undefined);
-
-  return (
-    <section className="w-full mx-auto p-6">
-      <div className="flex items-center">
-        <Image
-          src={logo}
-          alt="Logo"
-          priority
-          width={24}
-          height={24}
-          className={clsx('h-6 w-6', {
-            'dark:invert': color === '000000'
-          })}
-        />
-        {nextGame?.selectedTeamRank !== 99 ? (
-          <span className="text-sm uppercase font-normal text-gray-500 ml-2">
-            {nextGame?.selectedTeamRank}
-          </span>
-        ) : null}
-        <h1 className="font-semibold text-2xl ml-2">{name}</h1>
-      </div>
-      <h3 className="text-gray-700 dark:text-gray-300 mb-2">{`${record} • ${standing}`}</h3>
-      <TeamSelect allTeams={allTeams} teamId={'3456'} />
-      <h2 className="font-semibold text-xl">Schedule</h2>
-      <h3 className="font-semibold text-gray-700 dark:text-gray-300">Next</h3>
-      {nextGame && <Row isLast {...nextGame} />}
-      <h3 className="font-semibold text-gray-700 dark:text-gray-300 mt-4">
-        Full
-      </h3>
-      <div>
-        {games.map((game, index) => (
-          <Row
-            key={game.id}
-            index={index}
-            isLast={index === games.length - 1}
-            {...game}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
 
 export default function HomePage() {
   return (
     <>
-      <main className="md:hidden">
-        <Schedule />
-      </main>
-      <main className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 divide-x divide-gray-200 dark:divide-gray-800">
-        <Schedule />
+      <main className="hidden md:grid md:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-800">
         <ScoresPage />
         <ConferencePage />
       </main>

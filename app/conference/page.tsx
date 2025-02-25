@@ -1,69 +1,175 @@
+// components/StandingsTable.tsx
 import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getConferenceRankings } from 'app/espn';
+import { fetchStandings, getSimplifiedStandings } from 'app/sofascore';
 
-function RankingRow({
-  color,
-  gamesBack,
+interface TeamRowProps {
+  position: number;
+  teamColors: {
+    primary: string;
+    secondary: string;
+    text: string;
+  };
+  wins: number;
+  draws: number;
+  losses: number;
+  points: number;
+  index: number;
+  isLast: boolean;
+  teamImageUrl: string;
+  shortName: string;
+  teamName: string;
+  teamId: number;
+  status?: string;
+}
+
+function TeamRow({
+  position,
+  teamColors,
+  wins,
+  draws,
+  losses,
+  points,
   index,
   isLast,
-  logo,
-  name,
-  teamId
-}: any) {
+  teamImageUrl,
+  shortName,
+  teamName,
+  teamId,
+  status
+}: TeamRowProps) {
+  // Determine if the team is in a promotion or relegation zone
+  const isPromotion = status?.toLowerCase().includes('promotion');
+  const isRelegation = status?.toLowerCase().includes('relegation');
+
   return (
     <div
-      className={clsx('flex flex-row justify-between px-0 py-2', {
-        'border-b border-gray-200 dark:border-gray-800': !isLast
+      className={clsx('flex items-center justify-between px-2 py-3 hover:bg-gray-50 dark:hover:bg-gray-900/50 rounded transition-colors', {
+        'border-b border-gray-200 dark:border-gray-800': !isLast,
+        'bg-green-50/50 dark:bg-green-900/10': isPromotion,
+        'bg-red-50/50 dark:bg-red-900/10': isRelegation
       })}
     >
-      <div className="flex">
-        <Image
-          src={logo}
-          alt={name}
-          priority={index < 10}
-          width={20}
-          height={20}
-          className={clsx('h-5 w-5', {
-            'dark:invert': color === '000000'
-          })}
-        />
-        <Link href={`/${teamId}`} className="font-semibold ml-4">
-          {name}
+      <div className="flex items-center">
+        <span className="w-6 text-center font-medium text-gray-500 dark:text-gray-400 mr-2">
+          {position}
+        </span>
+        <div className="relative w-6 h-6 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800 flex-shrink-0">
+          <Image
+            src={teamImageUrl}
+            alt={teamName}
+            fill
+            sizes="24px"
+            priority={index < 10}
+            className={clsx('object-contain p-0.5', {
+              'dark:invert': teamColors.primary === '000000'
+            })}
+          />
+        </div>
+        <Link
+          href={`/team/${teamId}`}
+          className="font-medium ml-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          title={teamName}
+        >
+          {shortName}
         </Link>
+
+
       </div>
-      <div className="flex flex-row-reverse justify-end min-[450px]:flex-row">
-        <p className="text-gray-700 dark:text-gray-300 tabular-nums">
-          {gamesBack}
-        </p>
+
+      <div className="flex items-center space-x-4">
+        <div className="hidden md:flex space-x-4 text-sm text-gray-600 dark:text-gray-400">
+          <span className="w-8 text-center">{wins}</span>
+          <span className="w-8 text-center">{draws}</span>
+          <span className="w-8 text-center">{losses}</span>
+        </div>
+
+        <div className="flex md:hidden space-x-1 text-sm text-gray-600 dark:text-gray-400">
+          <span className="tabular-nums">{wins}-{draws}-{losses}</span>
+        </div>
+
+        <span className="w-8 text-center font-semibold tabular-nums">
+          {points}
+        </span>
       </div>
     </div>
   );
 }
 
-export default async function ConferencePage() {
-  // 'use cache';
-  // cacheLife('minutes');
+async function StandingsTable({
+  tournamentId = 390,
+  seasonId = 72603,
+  showHeader = true
+}: {
+  tournamentId?: number;
+  seasonId?: number;
+  showHeader?: boolean;
+}) {
+  const data = await fetchStandings(tournamentId, seasonId);
+  const simplifiedStandings = getSimplifiedStandings(data);
 
-  const confRankings = await getConferenceRankings();
+  if (!simplifiedStandings.length) {
+    return (
+      <div className="text-center p-6 text-gray-500 dark:text-gray-400">
+        No standings data available
+      </div>
+    );
+  }
 
   return (
-    <section className="w-full mx-auto p-6">
-      <h2 className="font-semibold text-2xl">Classificação</h2>
-      <h3 className="text-sm text-gray-700 dark:text-gray-300 mb-2 flex justify-end">
-        GB
-      </h3>
-      <div>
-        {confRankings.map((team, index) => (
-          <RankingRow
+    <div className="w-full rounded-lg overflow-hidden bg-white dark:bg-gray-900 shadow-sm border border-gray-100 dark:border-gray-800">
+      {showHeader && (
+        <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
+          <div className="flex items-center space-x-3">
+            <div className="relative w-8 h-8 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
+              <Image
+                src={`https://img.sofascore.com/api/v1/unique-tournament/${tournamentId}/image`}
+                alt={data.standings[0].tournament.name}
+                fill
+                sizes="32px"
+                className="object-contain p-1"
+              />
+            </div>
+            <div>
+              <h2 className="font-semibold text-lg">Classificação</h2>
+              <h3 className="text-xs text-gray-600 dark:text-gray-400">
+                {data.standings[0].tournament.name}
+              </h3>
+            </div>
+          </div>
+
+          <div className="hidden md:flex space-x-4 text-xs text-gray-500 dark:text-gray-400">
+            <span className="w-8 text-center">V</span>
+            <span className="w-8 text-center">E</span>
+            <span className="w-8 text-center">D</span>
+            <span className="w-8 text-center font-medium">PTS</span>
+          </div>
+
+          <div className="flex md:hidden text-xs text-gray-500 dark:text-gray-400">
+            <span className="w-8 text-center font-medium">PTS</span>
+          </div>
+        </div>
+      )}
+
+      <div className="p-2">
+        {simplifiedStandings.map((team, index) => (
+          <TeamRow
             key={team.teamId}
             index={index}
-            isLast={index === confRankings.length - 1}
+            isLast={index === simplifiedStandings.length - 1}
             {...team}
           />
         ))}
       </div>
+    </div>
+  );
+}
+
+export default function StandingsPage() {
+  return (
+    <section className="w-full mx-auto p-4">
+      <StandingsTable />
     </section>
   );
 }
