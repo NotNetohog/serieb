@@ -1,6 +1,6 @@
 import { fetchRounds, Event, getTeamImageUrl } from 'app/sofascore';
 import { MatchStatus } from './data';
-import { cacheLife } from 'next/dist/server/use-cache/cache-life';
+import Image from 'next/image';
 
 interface TeamDisplayProps {
   id: number;
@@ -19,10 +19,11 @@ function TeamDisplay({ id, shortName, name, teamColors, score, isWinner }: TeamD
     <div className="flex items-center justify-between w-full">
       <div className="flex items-center group">
         <div className="relative w-8 h-8 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800 mr-3 flex-shrink-0">
-          <img
+          <Image
             src={getTeamImageUrl(id)}
             alt={name}
-            sizes="32px"
+            width="32"
+            height="32"
             className="object-contain p-1"
           />
         </div>
@@ -93,8 +94,8 @@ export function EventCard({ event }: { event: Event }) {
 }
 
 export async function Scores() {
-  'use cache';
-  cacheLife('max');
+  // 'use cache';
+  // cacheLife('max');
 
   const { events } = await fetchRounds(390, 72603, 1)
 

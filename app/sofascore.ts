@@ -1,6 +1,6 @@
 // sofascore.ts
-import round1 from 'app/static-data/rounds/1.json';
-import standing1 from 'app/static-data/standings/1.json';
+import path from 'node:path';
+import fs from 'node:fs';
 
 // Base types
 export interface Country {
@@ -198,23 +198,64 @@ export interface EventsResponse {
   hasNextPage: boolean;
 }
 
-// Helper functions
+
 /**
- * Generates the team image URL based on team ID
+ * Generates the team image URL and caches the image locally
  * 
  * @param teamId - The team ID
- * @returns The full URL to the team's image
+ * @returns The path to the team's image (local cache or remote URL)
  */
-export function getTeamImageUrl(teamId: number): string {
-  return `https://img.sofascore.com/api/v1/team/${teamId}/image`;
+export function getTeamImageUrl(teamId: number):string {
+  const remoteUrl = `https://img.sofascore.com/api/v1/team/${teamId}/image`;
+  const cacheDir = path.join(process.cwd(), 'public', 'img');
+  const cacheFile = path.join(cacheDir, `team_${teamId}.png`);
+  
+  // Check if cached image exists
+  if (fs.existsSync(cacheFile)) {
+    // Return path to cached image
+    return  path.join('/img', `team_${teamId}.png`);
+  }
+
+  return ""
+  
+  // Image doesn't exist in cache, fetch and save it
+  // try {
+  //   // Ensure directory exists
+  //   if (!fs.existsSync(cacheDir)) {
+  //     fs.mkdirSync(cacheDir, { recursive: true });
+  //   }
+    
+  //   // Fetch the image
+  //   const response = await fetch(remoteUrl);
+    
+  //   if (!response.ok) {
+  //     throw new Error(`Failed to fetch team image: ${response.status} ${response.statusText}`);
+  //   }
+    
+  //   // Get image as buffer
+  //   const imageBuffer = await response.arrayBuffer();
+    
+  //   // Save image to file
+  //   fs.writeFileSync(cacheFile, Buffer.from(imageBuffer));
+  //   console.log(`Team image saved to ${cacheFile}`);
+    
+  //   // Return path to cached image
+  //   return  cacheFile;
+  // } catch (error) {
+  //   console.error(`Error fetching/caching team image for ID ${teamId}:`, error);
+  //   // Return remote URL as fallback
+  //   return remoteUrl;
+  // }
 }
+
+
+
 
 /**
  * Fetches standings data from SofaScore API for a specific tournament and season
  * 
  * @param tournamentId - The unique tournament ID (e.g., 390 for Brasileirão Série B)
  * @param seasonId - The season ID (e.g., 72603 for 2025 season)
- * @param includeTeamImages - Whether to include team image URLs in the response
  * @returns Promise with the typed standings data
  */
 export async function fetchStandings(
@@ -222,40 +263,84 @@ export async function fetchStandings(
   seasonId: number, 
 ): Promise<StandingsResponse> {
   try {
+    // File path for cached data
+    const cacheDir = path.join(process.cwd(), 'data', 'cache');
+    const cacheFile = path.join(cacheDir, `standings_${tournamentId}_${seasonId}.json`);
 
-    if(process.env.NODE_ENV === "development"){
-    const response = await fetch(
-      `https://www.sofascore.com/api/v1/unique-tournament/${tournamentId}/season/${seasonId}/standings/total`,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        },
-        cache: 'no-store' // Ensures fresh data on each request
+    if (process.env.NODE_ENV === "development") {
+      const response = await fetch(
+        `https://www.sofascore.com/api/v1/unique-tournament/${tournamentId}/season/${seasonId}/standings/total`,
+        {
+          headers: {
+            'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+          },
+          cache: 'no-store' // Ensures fresh data on each request
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch standings: ${response.status} ${response.statusText}`);
       }
-    );
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch standings: ${response.status} ${response.statusText}`);
+      const data: StandingsResponse = await response.json();
+      
+      // Save data to file
+      try {
+        // Ensure directory exists
+        if (!fs.existsSync(cacheDir)) {
+          fs.mkdirSync(cacheDir, { recursive: true });
+        }
+        fs.writeFileSync(cacheFile, JSON.stringify(data, null, 2));
+        console.log(`Standings data saved to ${cacheFile}`);
+      } catch (writeError) {
+        console.error('Error saving standings data to file:', writeError);
+      }
+      return data;
+    } else {
+      // In production, read from cached file
+        if (fs.existsSync(cacheFile)) {
+          const fileData = fs.readFileSync(cacheFile, 'utf8');
+          return JSON.parse(fileData) as StandingsResponse;
+        } else {
+          throw new Error(`Standings cache file not found: ${cacheFile}`);
+        }
     }
-
-    const data: StandingsResponse = await response.json();
-    
-
-    
-    return data;
-
-  }
-
-  const data =  standing1 as StandingsResponse
-
-  return data
-
   } catch (error) {
     console.error('Error fetching standings:', error);
     throw error;
   }
 }
+
+/**
+ * Fetches event data from SofaScore API for a specific event
+ * 
+ * @param eventId - The event ID
+ * @returns Promise with the event data
+ */
+async function fetchEventData(eventId: number): Promise<any> {
+  
+  // Fetch from API
+  const response = await fetch(
+    `https://www.sofascore.com/api/v1/event/${eventId}`,
+    {
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      },
+      cache: 'no-store'
+    }
+  );
+  
+  if (!response.ok) {
+    throw new Error(`Failed to fetch event data: ${response.status} ${response.statusText}`);
+  }
+  
+  const data = await response.json();
+  
+  return data;
+}
+
 
 /**
  * Helper function to get promotion/relegation status text for a team
@@ -296,9 +381,8 @@ export function getSimplifiedStandings(
     return [];
   }
 
-  return data.standings[0].rows.map(row => {
-    const teamHasImage = 'imageUrl' in row.team;
-    
+  return data.standings[0].rows.map( row => {
+
     return {
       position: row.position,
       teamName: row.team.name,
@@ -320,34 +404,6 @@ export function getSimplifiedStandings(
 }
 
 /**
- * Fetch a single team's image
- * 
- * @param teamId - The team ID to fetch the image for
- * @returns The URL to the team image
- */
-export async function fetchTeamImage(teamId: number): Promise<string> {
-  const imageUrl = getTeamImageUrl(teamId);
-  
-  try {
-    // We just check if the image exists by making a HEAD request
-    const response = await fetch(imageUrl, {
-      method: 'HEAD',
-      cache: 'force-cache' // Cache team logos as they rarely change
-    });
-    
-    if (!response.ok) {
-      console.warn(`Team image not found for ID ${teamId}`);
-      return ''; // Return empty string if image doesn't exist
-    }
-    
-    return imageUrl;
-  } catch (error) {
-    console.error(`Error checking team image for ID ${teamId}:`, error);
-    return imageUrl; // Return the URL anyway, let the client handle missing images
-  }
-}
-
-/**
  * Fetches rounds data from SofaScore API for a specific tournament and season
  * 
  * @param tournamentId - The unique tournament ID (e.g., 390 for Brasileirão Série B)
@@ -361,31 +417,50 @@ export async function fetchRounds(
   round: number
 ): Promise<EventsResponse> {
   try {
+    // File path for cached data
+    const cacheDir = path.join(process.cwd(), 'data', 'cache');
+    const cacheFile = path.join(cacheDir, `round_${tournamentId}_${seasonId}_${round}.json`);
 
-    if(process.env.NODE_ENV === "development"){
-    const response = await fetch(
-      `https://www.sofascore.com/api/v1/unique-tournament/${tournamentId}/season/${seasonId}/events/round/${round}`,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        },
+    if (process.env.NODE_ENV === "development") {
+      const response = await fetch(
+        `https://www.sofascore.com/api/v1/unique-tournament/${tournamentId}/season/${seasonId}/events/round/${round}`,
+        {
+          headers: {
+            'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch rounds: ${response.status} ${response.statusText}`);
       }
-    );
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch rounds: ${response.status} ${response.statusText}`);
+      const data: EventsResponse = await response.json();
+      
+      // Save data to file
+      try {
+        // Ensure directory exists
+        if (!fs.existsSync(cacheDir)) {
+          fs.mkdirSync(cacheDir, { recursive: true });
+        }
+        fs.writeFileSync(cacheFile, JSON.stringify(data, null, 2));
+        console.log(`Data saved to ${cacheFile}`);
+      } catch (writeError) {
+        console.error('Error saving data to file:', writeError);
+      }
+      
+      return data;
+    } else {
+      // In production, read from cached file
+  
+        if (fs.existsSync(cacheFile)) {
+          const fileData = fs.readFileSync(cacheFile, 'utf8');
+          return JSON.parse(fileData) as EventsResponse;
+        } else {
+          throw new Error(`Cache file not found: ${cacheFile}`);
+        }
     }
-
-    const data: EventsResponse = await response.json();
-    return data;
-  }
-
-  const data = round1 as EventsResponse
-
-  return data
-
-
   } catch (error) {
     console.error('Error fetching rounds:', error);
     throw error;

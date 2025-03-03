@@ -45,21 +45,19 @@
             "flag": "brazil",
             "alpha2": "BR"
           },
-          "userCount": 82242,
+          "userCount": 81927,
           "hasPerformanceGraphFeature": true,
           "id": 390,
-          "country": {
-
-          },
-          "displayInverseHomeAwayTeams": false
+          "country": {},
+          "displayInverseHomeAwayTeams": true
         },
         "priority": 300,
         "isGroup": false,
         "isLive": false,
         "id": 1449
       },
-      "type": "total",
       "name": "Brasileiro Serie B 2025",
+      "type": "total",
       "descriptions": [],
       "tieBreakingRule": {
         "text": "In the event that two (or more) teams have an equal number of points, the following rules break the tie:\n\n1. Number of victories\n2. Goal difference\n3. Goals scored",
@@ -77,9 +75,9 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 63898,
+            "userCount": 63740,
             "nameCode": "GOI",
-            "disabled": false,
+            "disabled": true,
             "national": false,
             "type": 0,
             "id": 7314,
@@ -99,9 +97,7 @@
               "nameTranslation": {
                 "ru": "Атлетико Гоияниенсе"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -131,9 +127,9 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 19198,
+            "userCount": 19207,
             "nameCode": "AMA",
-            "disabled": false,
+            "disabled": true,
             "national": false,
             "type": 0,
             "id": 336664,
@@ -177,9 +173,9 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 59320,
+            "userCount": 59469,
             "nameCode": "AMG",
-            "disabled": false,
+            "disabled": true,
             "national": false,
             "type": 0,
             "id": 1973,
@@ -199,9 +195,7 @@
               "nameTranslation": {
                 "ru": "Америка Минейро"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -231,9 +225,9 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 7981,
+            "userCount": 8129,
             "nameCode": "ATH",
-            "disabled": false,
+            "disabled": true,
             "national": false,
             "type": 0,
             "id": 342775,
@@ -277,9 +271,9 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 20880,
+            "userCount": 20744,
             "nameCode": "AVA",
-            "disabled": false,
+            "disabled": true,
             "national": false,
             "type": 0,
             "id": 7315,
@@ -299,9 +293,7 @@
               "nameTranslation": {
                 "ru": "Аваи"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -327,9 +319,9 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 22218,
+            "userCount": 22018,
             "nameCode": "BOT",
-            "disabled": false,
+            "disabled": true,
             "national": false,
             "type": 0,
             "id": 1979,
@@ -349,9 +341,7 @@
               "nameTranslation": {
                 "ru": "ФК Ботафого СП"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -377,10 +367,10 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 157732,
+            "userCount": 157763,
             "nameCode": "CAP",
             "disabled": false,
-            "national": false,
+            "national": true,
             "type": 0,
             "id": 1967,
             "country": {
@@ -399,9 +389,7 @@
               "nameTranslation": {
                 "ru": "Атлетико Паранаэнсе"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -427,10 +415,10 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 22916,
+            "userCount": 22835,
             "nameCode": "CHA",
-            "disabled": false,
-            "national": false,
+            "disabled": true,
+            "national": true,
             "type": 0,
             "id": 21845,
             "country": {
@@ -449,9 +437,7 @@
               "nameTranslation": {
                 "ru": "Шапекоэнсе"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -477,10 +463,10 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 50893,
+            "userCount": 51226,
             "nameCode": "COR",
-            "disabled": false,
-            "national": false,
+            "disabled": true,
+            "national": true,
             "type": 0,
             "id": 1982,
             "country": {
@@ -499,9 +485,7 @@
               "nameTranslation": {
                 "ru": "ФК Коритиба"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -527,10 +511,10 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 24961,
+            "userCount": 24851,
             "nameCode": "CRB",
             "disabled": false,
-            "national": false,
+            "national": true,
             "type": 0,
             "id": 22032,
             "country": {
@@ -549,9 +533,7 @@
               "nameTranslation": {
                 "ru": "Клуб Регатас Бразил"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -577,7 +559,7 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 49936,
+            "userCount": 50232,
             "nameCode": "CRI",
             "disabled": false,
             "national": false,
@@ -599,9 +581,7 @@
               "nameTranslation": {
                 "ru": "ФК Кришиума СК"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -627,9 +607,9 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 68016,
+            "userCount": 67812,
             "nameCode": "CUI",
-            "disabled": false,
+            "disabled": true,
             "national": false,
             "type": 0,
             "id": 49202,
@@ -649,9 +629,7 @@
               "nameTranslation": {
                 "ru": "Куяба"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -677,9 +655,9 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 6099,
+            "userCount": 6125,
             "nameCode": "FER",
-            "national": false,
+            "national": true,
             "type": 0,
             "id": 35285,
             "country": {
@@ -698,9 +676,7 @@
               "nameTranslation": {
                 "ru": "Ферровиария"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -726,7 +702,7 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 57875,
+            "userCount": 57842,
             "nameCode": "GGO",
             "disabled": false,
             "national": false,
@@ -748,9 +724,7 @@
               "nameTranslation": {
                 "ru": "Гояс"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -776,7 +750,7 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 28646,
+            "userCount": 28728,
             "nameCode": "GRN",
             "disabled": false,
             "national": false,
@@ -818,10 +792,10 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 16171,
+            "userCount": 16318,
             "nameCode": "FER",
-            "disabled": false,
-            "national": false,
+            "disabled": true,
+            "national": true,
             "type": 0,
             "id": 39634,
             "country": {
@@ -840,9 +814,7 @@
               "nameTranslation": {
                 "ru": "Операрио Ферровиарио"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -868,10 +840,10 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 28577,
+            "userCount": 28884,
             "nameCode": "PAY",
             "disabled": false,
-            "national": false,
+            "national": true,
             "type": 0,
             "id": 1997,
             "country": {
@@ -914,10 +886,10 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 18420,
+            "userCount": 18727,
             "nameCode": "CDR",
             "disabled": false,
-            "national": false,
+            "national": true,
             "type": 0,
             "id": 2012,
             "country": {
@@ -936,9 +908,7 @@
               "nameTranslation": {
                 "ru": "Ремо"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -968,10 +938,10 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 26326,
+            "userCount": 26495,
             "nameCode": "VIN",
             "disabled": false,
-            "national": false,
+            "national": true,
             "type": 0,
             "id": 2021,
             "country": {
@@ -990,9 +960,7 @@
               "nameTranslation": {
                 "ru": "ФК Вила Нова ГО"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
@@ -1022,7 +990,7 @@
               "slug": "football",
               "id": 1
             },
-            "userCount": 11682,
+            "userCount": 11745,
             "nameCode": "VRE",
             "disabled": false,
             "national": false,
@@ -1044,9 +1012,7 @@
               "nameTranslation": {
                 "ru": "Волта-Редонда"
               },
-              "shortNameTranslation": {
-
-              }
+              "shortNameTranslation": {}
             }
           },
           "descriptions": [],
