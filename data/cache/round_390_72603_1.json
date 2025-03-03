@@ -34,14 +34,14 @@
             "alpha2": "BR"
           },
           "userCount": 81927,
-          "hasPerformanceGraphFeature": false,
+          "hasPerformanceGraphFeature": true,
           "id": 390,
-          "hasEventPlayerStatistics": true,
-          "displayInverseHomeAwayTeams": true
+          "hasEventPlayerStatistics": false,
+          "displayInverseHomeAwayTeams": false
         },
         "priority": 300,
-        "isGroup": false,
-        "isLive": true,
+        "isGroup": true,
+        "isLive": false,
         "id": 1449
       },
       "season": {
@@ -53,7 +53,7 @@
       "roundInfo": {
         "round": 1
       },
-      "customId": "yHsEO",
+      "customId": "yOsEW",
       "status": {
         "code": 0,
         "description": "Not started",
@@ -71,7 +71,7 @@
         },
         "userCount": 59469,
         "nameCode": "AMG",
-        "disabled": true,
+        "disabled": false,
         "national": false,
         "type": 0,
         "id": 1973,
@@ -101,8 +101,8 @@
         },
         "userCount": 22018,
         "nameCode": "BOT",
-        "disabled": false,
-        "national": true,
+        "disabled": true,
+        "national": false,
         "type": 0,
         "id": 1979,
         "entityType": "team",
@@ -128,7 +128,7 @@
       "hasGlobalHighlights": true,
       "crowdsourcingDataDisplayEnabled": false,
       "id": 13525862,
-      "startTimestamp": 1743870600,
+      "startTimestamp": 1743872400,
       "slug": "botafogo-sp-america-mineiro",
       "finalResultOnly": false,
       "feedLocked": false,
@@ -170,12 +170,12 @@
           "userCount": 81927,
           "hasPerformanceGraphFeature": true,
           "id": 390,
-          "hasEventPlayerStatistics": false,
+          "hasEventPlayerStatistics": true,
           "displayInverseHomeAwayTeams": false
         },
         "priority": 300,
         "isGroup": false,
-        "isLive": false,
+        "isLive": true,
         "id": 1449
       },
       "season": {
@@ -187,7 +187,7 @@
       "roundInfo": {
         "round": 1
       },
-      "customId": "oWcuAfMc",
+      "customId": "oWcyAfMc",
       "status": {
         "code": 0,
         "description": "Not started",
@@ -206,7 +206,7 @@
         "userCount": 63740,
         "nameCode": "GOI",
         "disabled": true,
-        "national": true,
+        "national": false,
         "type": 0,
         "id": 7314,
         "entityType": "team",
@@ -236,7 +236,7 @@
         "userCount": 8129,
         "nameCode": "ATH",
         "disabled": true,
-        "national": false,
+        "national": true,
         "type": 0,
         "id": 342775,
         "entityType": "team",
@@ -254,12 +254,12 @@
         "changeTimestamp": 0
       },
       "hasGlobalHighlights": false,
-      "crowdsourcingDataDisplayEnabled": false,
+      "crowdsourcingDataDisplayEnabled": true,
       "id": 13525848,
-      "startTimestamp": 1743870600,
+      "startTimestamp": 1743868800,
       "slug": "athletic-club-atletico-goianiense",
-      "finalResultOnly": false,
-      "feedLocked": true,
+      "finalResultOnly": true,
+      "feedLocked": false,
       "isEditor": false
     },
     {
@@ -299,7 +299,7 @@
           "hasPerformanceGraphFeature": false,
           "id": 390,
           "hasEventPlayerStatistics": true,
-          "displayInverseHomeAwayTeams": false
+          "displayInverseHomeAwayTeams": true
         },
         "priority": 300,
         "isGroup": true,
@@ -315,7 +315,7 @@
       "roundInfo": {
         "round": 1
       },
-      "customId": "tWcsokeb",
+      "customId": "dWcsokeb",
       "status": {
         "code": 0,
         "description": "Not started",
@@ -334,7 +334,7 @@
         "userCount": 20744,
         "nameCode": "AVA",
         "disabled": true,
-        "national": true,
+        "national": false,
         "type": 0,
         "id": 7315,
         "entityType": "team",
@@ -381,14 +381,14 @@
       "changes": {
         "changeTimestamp": 0
       },
-      "hasGlobalHighlights": false,
-      "crowdsourcingDataDisplayEnabled": true,
+      "hasGlobalHighlights": true,
+      "crowdsourcingDataDisplayEnabled": false,
       "id": 13525934,
       "startTimestamp": 1743873300,
       "slug": "novorizontino-avai",
-      "finalResultOnly": true,
+      "finalResultOnly": false,
       "feedLocked": true,
-      "isEditor": true
+      "isEditor": false
     },
     {
       "tournament": {
@@ -424,7 +424,7 @@
             "alpha2": "BR"
           },
           "userCount": 81927,
-          "hasPerformanceGraphFeature": false,
+          "hasPerformanceGraphFeature": true,
           "id": 390,
           "hasEventPlayerStatistics": false,
           "displayInverseHomeAwayTeams": true
@@ -443,7 +443,7 @@
       "roundInfo": {
         "round": 1
       },
-      "customId": "HOjwP",
+      "customId": "HOskP",
       "status": {
         "code": 0,
         "description": "Not started",
@@ -461,8 +461,8 @@
         },
         "userCount": 51226,
         "nameCode": "COR",
-        "disabled": false,
-        "national": true,
+        "disabled": true,
+        "national": false,
         "type": 0,
         "id": 1982,
         "entityType": "team",
@@ -518,277 +518,9 @@
       "hasGlobalHighlights": true,
       "crowdsourcingDataDisplayEnabled": true,
       "id": 13525935,
-      "startTimestamp": 1743871500,
+      "startTimestamp": 1743875100,
       "slug": "vila-nova-fc-coritiba",
       "finalResultOnly": false,
-      "feedLocked": true,
-      "isEditor": false
-    },
-    {
-      "tournament": {
-        "name": "Brasileirão Série B",
-        "slug": "brasileirao-serie-b",
-        "category": {
-          "id": 13,
-          "name": "Brazil",
-          "slug": "brazil",
-          "sport": {
-            "name": "Football",
-            "slug": "football",
-            "id": 1
-          },
-          "flag": "brazil",
-          "alpha2": "BR"
-        },
-        "uniqueTournament": {
-          "name": "Brasileirão Série B",
-          "slug": "brasileirao-serie-b",
-          "primaryColorHex": "#3F01FF",
-          "secondaryColorHex": "#c5be02",
-          "category": {
-            "id": 13,
-            "name": "Brazil",
-            "slug": "brazil",
-            "sport": {
-              "name": "Football",
-              "slug": "football",
-              "id": 1
-            },
-            "flag": "brazil",
-            "alpha2": "BR"
-          },
-          "userCount": 81927,
-          "hasPerformanceGraphFeature": false,
-          "id": 390,
-          "hasEventPlayerStatistics": false,
-          "displayInverseHomeAwayTeams": true
-        },
-        "priority": 300,
-        "isGroup": true,
-        "isLive": true,
-        "id": 1449
-      },
-      "season": {
-        "name": "Brasileiro Serie B 2025",
-        "year": "2025",
-        "editor": true,
-        "id": 72603
-      },
-      "roundInfo": {
-        "round": 1
-      },
-      "customId": "VWisHPi",
-      "status": {
-        "code": 0,
-        "description": "Not started",
-        "type": "notstarted"
-      },
-      "homeTeam": {
-        "name": "CRB",
-        "slug": "crb",
-        "shortName": "CRB",
-        "gender": "M",
-        "sport": {
-          "name": "Football",
-          "slug": "football",
-          "id": 1
-        },
-        "userCount": 24851,
-        "nameCode": "CRB",
-        "disabled": false,
-        "national": true,
-        "type": 0,
-        "id": 22032,
-        "entityType": "team",
-        "subTeams": [],
-        "teamColors": {
-          "primary": "#f20000",
-          "secondary": "#f20000",
-          "text": "#f20000"
-        },
-        "fieldTranslations": {
-          "nameTranslation": {
-            "ru": "Клуб Регатас Бразил"
-          },
-          "shortNameTranslation": {}
-        }
-      },
-      "awayTeam": {
-        "name": "Chapecoense",
-        "slug": "chapecoense",
-        "shortName": "Chapecoense",
-        "gender": "M",
-        "sport": {
-          "name": "Football",
-          "slug": "football",
-          "id": 1
-        },
-        "userCount": 22835,
-        "nameCode": "CHA",
-        "disabled": false,
-        "national": true,
-        "type": 0,
-        "id": 21845,
-        "entityType": "team",
-        "subTeams": [],
-        "teamColors": {
-          "primary": "#009966",
-          "secondary": "#ffffff",
-          "text": "#ffffff"
-        },
-        "fieldTranslations": {
-          "nameTranslation": {
-            "ru": "Шапекоэнсе"
-          },
-          "shortNameTranslation": {}
-        }
-      },
-      "homeScore": {},
-      "awayScore": {},
-      "time": {},
-      "changes": {
-        "changeTimestamp": 0
-      },
-      "hasGlobalHighlights": true,
-      "crowdsourcingDataDisplayEnabled": false,
-      "id": 13525835,
-      "startTimestamp": 1743882300,
-      "slug": "crb-chapecoense",
-      "finalResultOnly": false,
-      "feedLocked": false,
-      "isEditor": false
-    },
-    {
-      "tournament": {
-        "name": "Brasileirão Série B",
-        "slug": "brasileirao-serie-b",
-        "category": {
-          "id": 13,
-          "name": "Brazil",
-          "slug": "brazil",
-          "sport": {
-            "name": "Football",
-            "slug": "football",
-            "id": 1
-          },
-          "flag": "brazil",
-          "alpha2": "BR"
-        },
-        "uniqueTournament": {
-          "name": "Brasileirão Série B",
-          "slug": "brasileirao-serie-b",
-          "primaryColorHex": "#3F01FF",
-          "secondaryColorHex": "#c5be02",
-          "category": {
-            "id": 13,
-            "name": "Brazil",
-            "slug": "brazil",
-            "sport": {
-              "name": "Football",
-              "slug": "football",
-              "id": 1
-            },
-            "flag": "brazil",
-            "alpha2": "BR"
-          },
-          "userCount": 81927,
-          "hasPerformanceGraphFeature": false,
-          "id": 390,
-          "hasEventPlayerStatistics": false,
-          "displayInverseHomeAwayTeams": false
-        },
-        "priority": 300,
-        "isGroup": true,
-        "isLive": false,
-        "id": 1449
-      },
-      "season": {
-        "name": "Brasileiro Serie B 2025",
-        "year": "2025",
-        "editor": true,
-        "id": 72603
-      },
-      "roundInfo": {
-        "round": 1
-      },
-      "customId": "JRsJRp",
-      "status": {
-        "code": 0,
-        "description": "Not started",
-        "type": "notstarted"
-      },
-      "homeTeam": {
-        "name": "Criciúma",
-        "slug": "criciuma",
-        "shortName": "Criciúma",
-        "gender": "M",
-        "sport": {
-          "name": "Football",
-          "slug": "football",
-          "id": 1
-        },
-        "userCount": 50232,
-        "nameCode": "CRI",
-        "disabled": false,
-        "national": false,
-        "type": 0,
-        "id": 1984,
-        "entityType": "team",
-        "subTeams": [],
-        "teamColors": {
-          "primary": "#ffff00",
-          "secondary": "#000000",
-          "text": "#000000"
-        },
-        "fieldTranslations": {
-          "nameTranslation": {
-            "ru": "ФК Кришиума СК"
-          },
-          "shortNameTranslation": {}
-        }
-      },
-      "awayTeam": {
-        "name": "Operário-PR",
-        "slug": "operario-pr",
-        "shortName": "Operário-PR",
-        "gender": "M",
-        "sport": {
-          "name": "Football",
-          "slug": "football",
-          "id": 1
-        },
-        "userCount": 16318,
-        "nameCode": "FER",
-        "disabled": true,
-        "national": true,
-        "type": 0,
-        "id": 39634,
-        "entityType": "team",
-        "subTeams": [],
-        "teamColors": {
-          "primary": "#ffffff",
-          "secondary": "#000000",
-          "text": "#000000"
-        },
-        "fieldTranslations": {
-          "nameTranslation": {
-            "ru": "Операрио Ферровиарио"
-          },
-          "shortNameTranslation": {}
-        }
-      },
-      "homeScore": {},
-      "awayScore": {},
-      "time": {},
-      "changes": {
-        "changeTimestamp": 0
-      },
-      "hasGlobalHighlights": true,
-      "crowdsourcingDataDisplayEnabled": false,
-      "id": 13525933,
-      "startTimestamp": 1743867900,
-      "slug": "operario-pr-criciuma",
-      "finalResultOnly": true,
       "feedLocked": true,
       "isEditor": true
     },
@@ -828,12 +560,12 @@
           "userCount": 81927,
           "hasPerformanceGraphFeature": false,
           "id": 390,
-          "hasEventPlayerStatistics": true,
+          "hasEventPlayerStatistics": false,
           "displayInverseHomeAwayTeams": false
         },
         "priority": 300,
-        "isGroup": false,
-        "isLive": false,
+        "isGroup": true,
+        "isLive": true,
         "id": 1449
       },
       "season": {
@@ -845,7 +577,275 @@
       "roundInfo": {
         "round": 1
       },
-      "customId": "mPsUfo",
+      "customId": "VLiaHPi",
+      "status": {
+        "code": 0,
+        "description": "Not started",
+        "type": "notstarted"
+      },
+      "homeTeam": {
+        "name": "CRB",
+        "slug": "crb",
+        "shortName": "CRB",
+        "gender": "M",
+        "sport": {
+          "name": "Football",
+          "slug": "football",
+          "id": 1
+        },
+        "userCount": 24851,
+        "nameCode": "CRB",
+        "disabled": true,
+        "national": false,
+        "type": 0,
+        "id": 22032,
+        "entityType": "team",
+        "subTeams": [],
+        "teamColors": {
+          "primary": "#f20000",
+          "secondary": "#f20000",
+          "text": "#f20000"
+        },
+        "fieldTranslations": {
+          "nameTranslation": {
+            "ru": "Клуб Регатас Бразил"
+          },
+          "shortNameTranslation": {}
+        }
+      },
+      "awayTeam": {
+        "name": "Chapecoense",
+        "slug": "chapecoense",
+        "shortName": "Chapecoense",
+        "gender": "M",
+        "sport": {
+          "name": "Football",
+          "slug": "football",
+          "id": 1
+        },
+        "userCount": 22835,
+        "nameCode": "CHA",
+        "disabled": true,
+        "national": false,
+        "type": 0,
+        "id": 21845,
+        "entityType": "team",
+        "subTeams": [],
+        "teamColors": {
+          "primary": "#009966",
+          "secondary": "#ffffff",
+          "text": "#ffffff"
+        },
+        "fieldTranslations": {
+          "nameTranslation": {
+            "ru": "Шапекоэнсе"
+          },
+          "shortNameTranslation": {}
+        }
+      },
+      "homeScore": {},
+      "awayScore": {},
+      "time": {},
+      "changes": {
+        "changeTimestamp": 0
+      },
+      "hasGlobalHighlights": true,
+      "crowdsourcingDataDisplayEnabled": true,
+      "id": 13525835,
+      "startTimestamp": 1743870600,
+      "slug": "crb-chapecoense",
+      "finalResultOnly": true,
+      "feedLocked": false,
+      "isEditor": false
+    },
+    {
+      "tournament": {
+        "name": "Brasileirão Série B",
+        "slug": "brasileirao-serie-b",
+        "category": {
+          "id": 13,
+          "name": "Brazil",
+          "slug": "brazil",
+          "sport": {
+            "name": "Football",
+            "slug": "football",
+            "id": 1
+          },
+          "flag": "brazil",
+          "alpha2": "BR"
+        },
+        "uniqueTournament": {
+          "name": "Brasileirão Série B",
+          "slug": "brasileirao-serie-b",
+          "primaryColorHex": "#3F01FF",
+          "secondaryColorHex": "#c5be02",
+          "category": {
+            "id": 13,
+            "name": "Brazil",
+            "slug": "brazil",
+            "sport": {
+              "name": "Football",
+              "slug": "football",
+              "id": 1
+            },
+            "flag": "brazil",
+            "alpha2": "BR"
+          },
+          "userCount": 81927,
+          "hasPerformanceGraphFeature": false,
+          "id": 390,
+          "hasEventPlayerStatistics": true,
+          "displayInverseHomeAwayTeams": true
+        },
+        "priority": 300,
+        "isGroup": false,
+        "isLive": false,
+        "id": 1449
+      },
+      "season": {
+        "name": "Brasileiro Serie B 2025",
+        "year": "2025",
+        "editor": true,
+        "id": 72603
+      },
+      "roundInfo": {
+        "round": 1
+      },
+      "customId": "OOsJRp",
+      "status": {
+        "code": 0,
+        "description": "Not started",
+        "type": "notstarted"
+      },
+      "homeTeam": {
+        "name": "Criciúma",
+        "slug": "criciuma",
+        "shortName": "Criciúma",
+        "gender": "M",
+        "sport": {
+          "name": "Football",
+          "slug": "football",
+          "id": 1
+        },
+        "userCount": 50232,
+        "nameCode": "CRI",
+        "disabled": true,
+        "national": true,
+        "type": 0,
+        "id": 1984,
+        "entityType": "team",
+        "subTeams": [],
+        "teamColors": {
+          "primary": "#ffff00",
+          "secondary": "#000000",
+          "text": "#000000"
+        },
+        "fieldTranslations": {
+          "nameTranslation": {
+            "ru": "ФК Кришиума СК"
+          },
+          "shortNameTranslation": {}
+        }
+      },
+      "awayTeam": {
+        "name": "Operário-PR",
+        "slug": "operario-pr",
+        "shortName": "Operário-PR",
+        "gender": "M",
+        "sport": {
+          "name": "Football",
+          "slug": "football",
+          "id": 1
+        },
+        "userCount": 16318,
+        "nameCode": "FER",
+        "disabled": true,
+        "national": false,
+        "type": 0,
+        "id": 39634,
+        "entityType": "team",
+        "subTeams": [],
+        "teamColors": {
+          "primary": "#ffffff",
+          "secondary": "#000000",
+          "text": "#000000"
+        },
+        "fieldTranslations": {
+          "nameTranslation": {
+            "ru": "Операрио Ферровиарио"
+          },
+          "shortNameTranslation": {}
+        }
+      },
+      "homeScore": {},
+      "awayScore": {},
+      "time": {},
+      "changes": {
+        "changeTimestamp": 0
+      },
+      "hasGlobalHighlights": false,
+      "crowdsourcingDataDisplayEnabled": true,
+      "id": 13525933,
+      "startTimestamp": 1743879600,
+      "slug": "operario-pr-criciuma",
+      "finalResultOnly": true,
+      "feedLocked": true,
+      "isEditor": false
+    },
+    {
+      "tournament": {
+        "name": "Brasileirão Série B",
+        "slug": "brasileirao-serie-b",
+        "category": {
+          "id": 13,
+          "name": "Brazil",
+          "slug": "brazil",
+          "sport": {
+            "name": "Football",
+            "slug": "football",
+            "id": 1
+          },
+          "flag": "brazil",
+          "alpha2": "BR"
+        },
+        "uniqueTournament": {
+          "name": "Brasileirão Série B",
+          "slug": "brasileirao-serie-b",
+          "primaryColorHex": "#3F01FF",
+          "secondaryColorHex": "#c5be02",
+          "category": {
+            "id": 13,
+            "name": "Brazil",
+            "slug": "brazil",
+            "sport": {
+              "name": "Football",
+              "slug": "football",
+              "id": 1
+            },
+            "flag": "brazil",
+            "alpha2": "BR"
+          },
+          "userCount": 81927,
+          "hasPerformanceGraphFeature": false,
+          "id": 390,
+          "hasEventPlayerStatistics": false,
+          "displayInverseHomeAwayTeams": true
+        },
+        "priority": 300,
+        "isGroup": true,
+        "isLive": false,
+        "id": 1449
+      },
+      "season": {
+        "name": "Brasileiro Serie B 2025",
+        "year": "2025",
+        "editor": true,
+        "id": 72603
+      },
+      "roundInfo": {
+        "round": 1
+      },
+      "customId": "mPsKwo",
       "status": {
         "code": 0,
         "description": "Not started",
@@ -863,7 +863,7 @@
         },
         "userCount": 6125,
         "nameCode": "FER",
-        "national": false,
+        "national": true,
         "type": 0,
         "id": 35285,
         "entityType": "team",
@@ -892,7 +892,7 @@
         },
         "userCount": 18727,
         "nameCode": "CDR",
-        "disabled": true,
+        "disabled": false,
         "national": true,
         "type": 0,
         "id": 2012,
@@ -916,10 +916,10 @@
       "changes": {
         "changeTimestamp": 0
       },
-      "hasGlobalHighlights": false,
+      "hasGlobalHighlights": true,
       "crowdsourcingDataDisplayEnabled": false,
       "id": 13525845,
-      "startTimestamp": 1743869700,
+      "startTimestamp": 1743867900,
       "slug": "ferroviaria-remo",
       "finalResultOnly": false,
       "feedLocked": true,
@@ -959,26 +959,26 @@
             "alpha2": "BR"
           },
           "userCount": 81927,
-          "hasPerformanceGraphFeature": true,
+          "hasPerformanceGraphFeature": false,
           "id": 390,
-          "hasEventPlayerStatistics": true,
-          "displayInverseHomeAwayTeams": true
+          "hasEventPlayerStatistics": false,
+          "displayInverseHomeAwayTeams": false
         },
         "priority": 300,
-        "isGroup": false,
-        "isLive": false,
+        "isGroup": true,
+        "isLive": true,
         "id": 1449
       },
       "season": {
         "name": "Brasileiro Serie B 2025",
         "year": "2025",
-        "editor": false,
+        "editor": true,
         "id": 72603
       },
       "roundInfo": {
         "round": 1
       },
-      "customId": "kOqoIJc",
+      "customId": "kOsoIYc",
       "status": {
         "code": 0,
         "description": "Not started",
@@ -996,7 +996,7 @@
         },
         "userCount": 57842,
         "nameCode": "GGO",
-        "disabled": false,
+        "disabled": true,
         "national": false,
         "type": 0,
         "id": 1960,
@@ -1026,8 +1026,8 @@
         },
         "userCount": 19207,
         "nameCode": "AMA",
-        "disabled": true,
-        "national": false,
+        "disabled": false,
+        "national": true,
         "type": 0,
         "id": 336664,
         "entityType": "team",
@@ -1045,13 +1045,13 @@
         "changeTimestamp": 0
       },
       "hasGlobalHighlights": false,
-      "crowdsourcingDataDisplayEnabled": false,
+      "crowdsourcingDataDisplayEnabled": true,
       "id": 13525840,
-      "startTimestamp": 1743884100,
+      "startTimestamp": 1743867000,
       "slug": "amazonas-fc-goias",
-      "finalResultOnly": true,
+      "finalResultOnly": false,
       "feedLocked": true,
-      "isEditor": false
+      "isEditor": true
     },
     {
       "tournament": {
@@ -1090,23 +1090,23 @@
           "hasPerformanceGraphFeature": true,
           "id": 390,
           "hasEventPlayerStatistics": false,
-          "displayInverseHomeAwayTeams": false
+          "displayInverseHomeAwayTeams": true
         },
         "priority": 300,
-        "isGroup": false,
+        "isGroup": true,
         "isLive": false,
         "id": 1449
       },
       "season": {
         "name": "Brasileiro Serie B 2025",
         "year": "2025",
-        "editor": true,
+        "editor": false,
         "id": 72603
       },
       "roundInfo": {
         "round": 1
       },
-      "customId": "rJsXO",
+      "customId": "rOuXO",
       "status": {
         "code": 0,
         "description": "Not started",
@@ -1124,8 +1124,8 @@
         },
         "userCount": 28884,
         "nameCode": "PAY",
-        "disabled": false,
-        "national": false,
+        "disabled": true,
+        "national": true,
         "type": 0,
         "id": 1997,
         "entityType": "team",
@@ -1172,14 +1172,14 @@
       "changes": {
         "changeTimestamp": 0
       },
-      "hasGlobalHighlights": true,
-      "crowdsourcingDataDisplayEnabled": true,
+      "hasGlobalHighlights": false,
+      "crowdsourcingDataDisplayEnabled": false,
       "id": 13525850,
-      "startTimestamp": 1743870600,
+      "startTimestamp": 1743885000,
       "slug": "paysandu-sc-athletico",
-      "finalResultOnly": true,
+      "finalResultOnly": false,
       "feedLocked": false,
-      "isEditor": false
+      "isEditor": true
     },
     {
       "tournament": {
@@ -1215,14 +1215,14 @@
             "alpha2": "BR"
           },
           "userCount": 81927,
-          "hasPerformanceGraphFeature": false,
+          "hasPerformanceGraphFeature": true,
           "id": 390,
-          "hasEventPlayerStatistics": false,
-          "displayInverseHomeAwayTeams": true
+          "hasEventPlayerStatistics": true,
+          "displayInverseHomeAwayTeams": false
         },
         "priority": 300,
-        "isGroup": true,
-        "isLive": false,
+        "isGroup": false,
+        "isLive": true,
         "id": 1449
       },
       "season": {
@@ -1234,7 +1234,7 @@
       "roundInfo": {
         "round": 1
       },
-      "customId": "MOcscJu",
+      "customId": "HOfscJu",
       "status": {
         "code": 0,
         "description": "Not started",
@@ -1252,8 +1252,8 @@
         },
         "userCount": 11745,
         "nameCode": "VRE",
-        "disabled": false,
-        "national": false,
+        "disabled": true,
+        "national": true,
         "type": 0,
         "id": 6982,
         "entityType": "team",
@@ -1282,7 +1282,7 @@
         },
         "userCount": 67812,
         "nameCode": "CUI",
-        "disabled": true,
+        "disabled": false,
         "national": true,
         "type": 0,
         "id": 49202,
@@ -1306,12 +1306,12 @@
       "changes": {
         "changeTimestamp": 0
       },
-      "hasGlobalHighlights": true,
+      "hasGlobalHighlights": false,
       "crowdsourcingDataDisplayEnabled": false,
       "id": 13525844,
-      "startTimestamp": 1743876000,
+      "startTimestamp": 1743878700,
       "slug": "cuiaba-volta-redonda",
-      "finalResultOnly": false,
+      "finalResultOnly": true,
       "feedLocked": false,
       "isEditor": true
     }

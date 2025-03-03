@@ -1,6 +1,7 @@
 import { fetchRounds, Event, getTeamImageUrl } from 'app/sofascore';
 import { MatchStatus } from './data';
 import Image from 'next/image';
+import { cacheLife } from 'next/dist/server/use-cache/cache-life';
 
 interface TeamDisplayProps {
   id: number;
@@ -94,8 +95,8 @@ export function EventCard({ event }: { event: Event }) {
 }
 
 export async function Scores() {
-  // 'use cache';
-  // cacheLife('max');
+  'use cache';
+  cacheLife('max');
 
   const { events } = await fetchRounds(390, 72603, 1)
 

@@ -2,6 +2,7 @@
 import clsx from 'clsx';
 import { fetchStandings, getSimplifiedStandings } from 'app/sofascore';
 import Image from 'next/image';
+import { cacheLife } from 'next/dist/server/use-cache/cache-life';
 
 interface TeamRowProps {
   position: number;
@@ -99,8 +100,8 @@ async function StandingsTable({
   seasonId?: number;
   showHeader?: boolean;
 }) {
-  // 'use cache';
-  // cacheLife('max');
+  'use cache';
+  cacheLife('max');
 
   const data = await fetchStandings(tournamentId, seasonId);
   const simplifiedStandings = getSimplifiedStandings(data);
@@ -120,7 +121,7 @@ async function StandingsTable({
           <div className="flex items-center space-x-3">
             <div className="relative w-8 h-8 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
               <Image
-                src={`https://img.sofascore.com/api/v1/unique-tournament/${tournamentId}/image`}
+                src={`/img/${tournamentId}.png`}
                 alt={data.standings[0].tournament.name}
                 width="32"
                 height="32"
